@@ -2,9 +2,8 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import Constants from "expo-constants";
 import { Main } from "./components/Main";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-
 
 //Para imagenes fadeDuration, resizeMode-> ajustar tamaño de la imagen
 

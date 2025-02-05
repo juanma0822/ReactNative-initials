@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "expo-router";
 
 import {
   StyleSheet,
@@ -29,6 +30,9 @@ export function Main() {
       >
         <Logo />
       </View>
+      <Link href="/about" className="text-blue-400 text-xl">
+        Ir al about
+      </Link>
       {games.length === 0 ? (
         <ActivityIndicator size={"large"} />
       ) : (
