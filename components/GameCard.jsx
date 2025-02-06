@@ -1,25 +1,47 @@
-import { StyleSheet, Text, View, Image, Animated } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Animated,
+  Pressable,
+} from "react-native";
 import { useEffect, useRef } from "react";
 import "../global.css";
 import { Genre } from "./Genre";
+import { Link } from "expo-router";
 
 export function GameCard({ game }) {
   return (
-    <View
-      className="flex-row bg-slate-500/10 p-4 rounded-xl gap-4 mb-10"
-      key={game.id}
-    >
-      <Image source={{ uri: game.thumbnail }} style={styles.image} />
-      <View>
-        <Text className="mb-1" style={styles.title}>
-          {game.title}
-        </Text>
-        <Genre genre={game.genre} />
-        <Text className="mt-2 flex-shrink" style={styles.description}>
-          {game.short_description.slice(0, 100)}...
-        </Text>
-      </View>
-    </View>
+    <Link href={`/${game.title}`} asChild>
+      <Pressable
+        style={({ pressed }) => [
+          {
+            opacity: pressed ? 0.7 : 1,
+            borderWidth: pressed ? 1 : 0,
+            borderColor: pressed ? "black" : "black",
+            borderRadius: 10,
+            padding: 10,
+            marginBottom: 8,
+          },
+          styles.pressable,
+        ]}
+        className="mb-2 rounded-xl p-4"
+      >
+        <View className="flex-row gap-4" key={game.id}>
+          <Image source={{ uri: game.thumbnail }} style={styles.image} />
+          <View className="flex-shrink">
+            <Text className="mb-1" style={styles.title}>
+              {game.title}
+            </Text>
+            <Genre genre={game.genre} />
+            <Text className="mt-2 flex-shrink" style={styles.description}>
+              {game.short_description.slice(0, 100)}...
+            </Text>
+          </View>
+        </View>
+      </Pressable>
+    </Link>
   );
 }
 
@@ -43,8 +65,10 @@ export function AnimatedGameCard({ game, index }) {
 }
 
 const styles = StyleSheet.create({
-  card: {
-    marginBottom: 48,
+  pressable: {
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 8,
   },
   image: {
     width: 107,

@@ -8,11 +8,14 @@ import {
   Image,
   ActivityIndicator,
   FlatList,
+  Pressable,
 } from "react-native";
 import { getLatestGames } from "../lib/metacritic";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { AnimatedGameCard, GameCard } from "./GameCard";
 import { Logo } from "./Logo";
+import { InfoIcon } from "./Icons";
+import { Screen } from "./Screen";
 
 export function Main() {
   const [games, setGames] = useState([]);
@@ -24,15 +27,7 @@ export function Main() {
     });
   });
   return (
-    <View style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
-      <View
-        style={{ marginBottom: 20, backgroundColor: "grey", borderRadius: 10 }}
-      >
-        <Logo />
-      </View>
-      <Link href="/about" className="text-blue-400 text-xl">
-        Ir al about
-      </Link>
+    <Screen>
       {games.length === 0 ? (
         <ActivityIndicator size={"large"} />
       ) : (
@@ -44,6 +39,6 @@ export function Main() {
           )}
         />
       )}
-    </View>
+    </Screen>
   );
 }
